@@ -33,13 +33,13 @@ const Products = db.define('product',{
     },
 
     serialNumber : {
-    type: DataTypes.STRING, 
-    allowNull: true,
-    unique: true,
-    validate: {
-        notEmpty: true,
-    }
-},
+        type: DataTypes.STRING, 
+        allowNull: false,
+        unique: true,
+        validate: {
+            notEmpty: true
+        }
+    },
     userId : {
         type: DataTypes.INTEGER,
         allowNull: false,

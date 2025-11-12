@@ -17,38 +17,50 @@ const Sidebar = () => {
 
   return (
     <div>
-      <aside className="menu pl-2 has-shadow">
-        <p className="menu-label">General</p>
+      <aside className="menu pl-2 has-shadow has-background-white">
+        <p className="menu-label has-text-grey">General</p>
         <ul className="menu-list">
           <li>
-            <NavLink to={"/dashboard"}>
-              <IoHome /> Dashboard
+            <NavLink to={"/dashboard"} className="has-text-dark">
+              <span className="icon mr-2">
+                <IoHome />
+              </span>
+              Dashboard
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/products"}>
-              <IoPricetag /> Products
+            <NavLink to={"/products"} className="has-text-dark">
+              <span className="icon mr-2">
+                <IoPricetag />
+              </span>
+              Products
             </NavLink>
           </li>
         </ul>
-        {user && user.role === "admin" && (
+        {user && user.role && user.role.toLowerCase() === "admin" && (
           <div>
-            <p className="menu-label">Admin</p>
+            <p className="menu-label has-text-grey">Admin</p>
             <ul className="menu-list">
               <li>
-                <NavLink to={"/users"}>
-                  <IoPerson /> Users
+                <NavLink to={"/users"} className="has-text-dark">
+                  <span className="icon mr-2">
+                    <IoPerson />
+                  </span>
+                  Users
                 </NavLink>
               </li>
             </ul>
           </div>
         )}
 
-        <p className="menu-label">Settings</p>
+        <p className="menu-label has-text-grey">Settings</p>
         <ul className="menu-list">
           <li>
-            <button onClick={logout} className="button is-white">
-              <IoLogOut /> Logout
+            <button onClick={logout} className="button is-white has-text-danger">
+              <span className="icon mr-2">
+                <IoLogOut />
+              </span>
+              Logout
             </button>
           </li>
         </ul>

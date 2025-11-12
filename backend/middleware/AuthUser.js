@@ -24,9 +24,9 @@ export const adminOnly = async (req, res, next) => {
     // OPTIMASI: Cek langsung req.role yang sudah di-injeksi oleh verifyUser.
     // Asumsi: adminOnly dijalankan SETELAH verifyUser.
     
-    // PENTING: Perhatikan kapitalisasi ('Admin')
-    if (req.role !== "Admin") {
-        return res.status(403).json({msg: "Akses terlarang"});
+    // PENTING: Perhatikan kapitalisasi ('Admin') - case-insensitive check
+    if (!req.role || req.role.toLowerCase() !== "admin") {
+        return res.status(403).json({msg: "Akses terlarang. Hanya admin yang dapat mengakses"});
     }
     
     next();

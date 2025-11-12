@@ -17,9 +17,9 @@ const store = new sessionStore({
     db: db
 });
 
-//(async () => {
-//    await db.sync();
-//})();
+(async () => {
+    await db.sync();
+})();
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -33,7 +33,9 @@ app.use(session({
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(UserRoute);
@@ -42,6 +44,8 @@ app.use(AuthRoute);
 
 //store.sync();
 
-app.listen(process.env.APP_PORT, () => {
-    console.log('Server up and running');
-})
+const PORT = process.env.APP_PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`Server up and running on port ${PORT}`);
+});

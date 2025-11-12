@@ -18,7 +18,7 @@ const AddUser = () => {
     if (isError) {
       navigate("/");
     }
-    if (user && user.role !== "admin") {
+    if (user && user.role && user.role.toLowerCase() !== "admin") {
       navigate("/dashboard");
     }
   }, [isError, user, navigate]);
